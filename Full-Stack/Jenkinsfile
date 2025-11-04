@@ -68,7 +68,7 @@ pipeline {
                 script {
                     // This step should not normally be used in your script. Consult the inline help for details.
                     withDockerRegistry(credentialsId: 'docker-credentials', toolName: 'docker') {
-                            sh "docker build -t imharry404/ekart:latest -f docker/Dockerfile ."
+                            sh "docker build -t augasteenbandaru/ekart:latest -f docker/Dockerfile ."
                     }
                     
                 }
@@ -77,7 +77,7 @@ pipeline {
         
         stage('Trivy Scan') {
             steps {
-                sh "trivy image imharry404/ekart:latest > trivy-report.txt"
+                sh "trivy image augasteenbandaru/ekart:latest > trivy-report.txt"
             }
         }
         
@@ -86,7 +86,7 @@ pipeline {
                 script {
                     
                     withDockerRegistry(credentialsId: 'docker-credentials', toolName: 'docker') {
-                            sh "docker push imharry404/ekart:latest"
+                            sh "docker push augasteenbandaru/ekart:latest"
                     }
                 }
             }
@@ -103,7 +103,7 @@ pipeline {
         
         stage('Last') {
             steps {
-                echo "ho gya bhai....bye ab"
+                echo "Finished"
             }
         }
         
